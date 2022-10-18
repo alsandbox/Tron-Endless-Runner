@@ -56,7 +56,7 @@ public class DestroyOrRelocate : MonoBehaviour
 
         Renderer targetObstacleMesh = targetObstacle.GetComponent<Renderer>();
 
-        if (targetObstacleMesh.enabled == false)
+        if (!targetObstacleMesh.enabled)
         {
             targetObstacleMesh.enabled = true;
         }
