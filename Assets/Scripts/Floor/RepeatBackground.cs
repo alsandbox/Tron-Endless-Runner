@@ -9,11 +9,9 @@ public class RepeatBackground : MonoBehaviour
 
     private Renderer rndrer;
 
-    private float speed;
     private float speedFactorObjects = 1f;
     private float floorScale;
     private float conversionFactor;
-
 
     private void Awake()
     {
@@ -26,7 +24,6 @@ public class RepeatBackground : MonoBehaviour
         if (!GameManager.Instance.isGameOver)
         {
             RepeatTexture();
-            speed = GameManager.Instance.speed;
         }
     }
 
@@ -46,7 +43,7 @@ public class RepeatBackground : MonoBehaviour
 
     private void RepeatTexture()
     {
-        offset += new Vector2(-(speed * conversionFactor * Time.deltaTime), 0);
+        offset += new Vector2(-(GameManager.Instance.speed * conversionFactor * Time.deltaTime), 0);
         this.rndrer.material.SetTextureOffset("_MainTex", offset);
     }
 }
