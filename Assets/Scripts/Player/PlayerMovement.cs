@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private float speed;
-
     private float horizontalInput;
     private float verticalInput;
-
-    void Start()
-    {
-        speed = GameManager.Instance.speed;
-    }
 
     private void Update()
     {
@@ -23,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
 
             Vector3 playerInput = new Vector3(verticalInput, 0, horizontalInput);
 
-            transform.Translate(playerInput * (speed / 1.5f * Time.deltaTime));
+            transform.Translate(playerInput * (GameManager.Instance.speed / 1.5f * Time.deltaTime));
 
             PreventOutOfBounds();
         }
