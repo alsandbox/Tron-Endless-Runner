@@ -2,13 +2,10 @@ using UnityEngine;
 
 public class MovingObjects : MonoBehaviour
 {
-    private float speed;
-
     private void Update()
     {
         if (!GameManager.Instance.isGameOver)
         {
-            speed = GameManager.Instance.speed;
             BasicMovement();
             RotateGems();
         }
@@ -16,7 +13,7 @@ public class MovingObjects : MonoBehaviour
 
     private void BasicMovement()
     {
-        transform.Translate(Vector3.right * speed * Time.deltaTime, Space.World);
+        transform.Translate(Vector3.right * GameManager.Instance.speed * Time.deltaTime, Space.World);
     }
 
     private void RotateGems()
