@@ -24,9 +24,8 @@ public class MainUIHandler : BaseUIHandler
 
     private bool gameIsPaused;
 
-    protected override void Awake()
+    private void Awake()
     {
-        base.Awake();
         Hints();
         playedMainSound = backgroundSound.GetComponent<AudioSource>();
         pauseSound = backgroundSound.GetComponent<AudioLowPassFilter>();
