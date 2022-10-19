@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.EventSystems;
+using UnityEngine.Events;
 using TMPro;
 
 public class MainUIHandler : BaseUIHandler
@@ -21,6 +21,7 @@ public class MainUIHandler : BaseUIHandler
     [SerializeField] private GameObject resumeButton;
 
     [SerializeField] private GameObject backgroundSound;
+    public UnityEvent stopSpawn;
 
     private AudioSource playedMainSound;
     private AudioLowPassFilter pauseSound;
@@ -107,6 +108,7 @@ public class MainUIHandler : BaseUIHandler
     //event is invoked from PlayerController, GameOver method
     private void GameOver()
     {
+        stopSpawn.Invoke();
         playedMainSound.Stop();
         gameOverUI.SetActive(true);
         scorePanelUI.SetActive(false);
