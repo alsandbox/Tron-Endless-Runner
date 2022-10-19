@@ -36,7 +36,6 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        CheckBestScore();
         RandomSpawnPos();
     }
     public void RandomSpawnPos()
@@ -64,7 +63,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void CheckBestScore()
+    public void CheckBestScore()
     {
         if (score > bestScore)
         {

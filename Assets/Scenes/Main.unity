@@ -2994,6 +2994,21 @@ MonoBehaviour:
   restartButton: {fileID: 8746933395723094359}
   resumeButton: {fileID: 1090432750}
   backgroundSound: {fileID: 1915510662}
+  setBestScore:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 959820521}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: CheckBestScore
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1804521160
 GameObject:
   m_ObjectHideFlags: 0
@@ -3591,12 +3606,44 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1289957510}
     - target: {fileID: 1415791728317319985, guid: 12523b07cb25c8e4297583713a3722ab, type: 3}
+      propertyPath: checkBestScore.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1415791728317319985, guid: 12523b07cb25c8e4297583713a3722ab, type: 3}
       propertyPath: gameOver.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1768089969}
+    - target: {fileID: 1415791728317319985, guid: 12523b07cb25c8e4297583713a3722ab, type: 3}
+      propertyPath: checkBestScore.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1415791728317319985, guid: 12523b07cb25c8e4297583713a3722ab, type: 3}
+      propertyPath: checkBestScore.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 959820521}
+    - target: {fileID: 1415791728317319985, guid: 12523b07cb25c8e4297583713a3722ab, type: 3}
+      propertyPath: checkBestScore.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1415791728317319985, guid: 12523b07cb25c8e4297583713a3722ab, type: 3}
+      propertyPath: checkBestScore.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CheckBestScore
+      objectReference: {fileID: 0}
+    - target: {fileID: 1415791728317319985, guid: 12523b07cb25c8e4297583713a3722ab, type: 3}
+      propertyPath: checkBestScore.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1415791728317319985, guid: 12523b07cb25c8e4297583713a3722ab, type: 3}
+      propertyPath: checkBestScore.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3331508417128390978, guid: 12523b07cb25c8e4297583713a3722ab, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3331508417128390978, guid: 12523b07cb25c8e4297583713a3722ab, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8158458429562341720, guid: 12523b07cb25c8e4297583713a3722ab, type: 3}
       propertyPath: m_RootOrder
