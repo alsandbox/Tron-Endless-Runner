@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using TMPro;
 using UnityEngine.Events;
@@ -21,10 +21,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private ParticleSystem destroyObstacleParticle;
     private ParticleSystem pillarObstacleParticle;
 
+    [SerializeField] UnityEvent checkBestScore = new UnityEvent();
+
     private void Start()
     {
         score = 0;
         UpdateScore(0);
+        checkBestScore.AddListener(GameManager.Instance.CheckBestScore);
     }
 
     public void OnTriggerEnter(Collider other)
@@ -58,12 +61,14 @@ public class PlayerController : MonoBehaviour
     {
         GameManager.Instance.PlaySound(collectGems);
         UpdateScore(1);
+        
+        checkBestScore.Invoke();
+
         Destroy(targetGem);
 
         if (score % 50 == 0)
         {
             GameManager.Instance.speed++;
-            Debug.Log(GameManager.Instance.speed);
         }
         if (score % 100 == 0)
         {
@@ -104,5 +109,6 @@ public class PlayerController : MonoBehaviour
     {
         GameManager.Instance.isGameOver = true;
         gameOver.Invoke();
+        checkBestScore.RemoveListener(GameManager.Instance.CheckBestScore);
     }
 }
