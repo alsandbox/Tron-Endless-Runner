@@ -14,6 +14,10 @@ public class SpawnManager : MonoBehaviour
     private int randomIndexGems;
     [HideInInspector] public int randomRotationObstacle;
 
+    private float yAxisSpawnGem = 1f;
+    private float xRotation = -90;
+    private Quaternion rotationGem;
+
     private float startDelay = 0.2f;
     private float startDelaySpecialGem = 0.5f;
     private float repeatRateObstacles = 1.4f;
@@ -29,53 +33,38 @@ public class SpawnManager : MonoBehaviour
 
     private void Start()
     {
+        rotationGem = Quaternion.Euler(xRotation, 0f, 0f);
         InvokeRepeating("SpawnObstacle", startDelay, repeatRateObstacles);
         InvokeRepeating("SpawnCollectables", startDelay, repeatRateGems);
         InvokeRepeating("SpawnSpecialGem", startDelaySpecialGem, repeatRateSpecialGem);
     }
 
-    private void Update()
-    {
-        if (!GameManager.Instance.isGameOver)
-        {
-            RandomIndex();
-            RandomObstacleRotation();
-        }
-        else
-        {
-            CancelInvoke();
-        }
-    }
-
-    private void RandomIndex()
-    {
-        randomIndexObstacles = Random.Range(0, obstaclesPrefabs.Length);
-        randomIndexGems = Random.Range(0, gemsPrefabs.Length);
-    }
-
-    private void RandomObstacleRotation()
-    {
-        randomRotationObstacle = Random.Range(0, 180);
-    }
-
     private void SpawnObstacle()
     {
-        Quaternion rotationObstacle = Quaternion.Euler(-90f, 0, randomRotationObstacle);
-        pointToSpawnObstacle = new Vector3(-30, 2.94f, GameManager.Instance.randomSpawnObjPos);
+        randomIndexObstacles = Random.Range(0, obstaclesPrefabs.Length);
+        randomRotationObstacle = Random.Range(0, 180);
+        float xAxisSpawnObstacle = -30f;
+        float yAxisSpawnObstacle = 2.94f;
+
+        Quaternion rotationObstacle = Quaternion.Euler(xRotation, 0, randomRotationObstacle);
+        pointToSpawnObstacle = new Vector3(xAxisSpawnObstacle, yAxisSpawnObstacle, GameManager.Instance.randomSpawnObjPos);
         Instantiate(obstaclesPrefabs[randomIndexObstacles], pointToSpawnObstacle, rotationObstacle, spawnParent);
     }
 
     private void SpawnCollectables()
     {
-        Quaternion rotationGem = Quaternion.Euler(-90f, 0f, 0f);
-        pointToSpawnGems = new Vector3(-23f, 1f, GameManager.Instance.randomSpawnGemsPos);
+        randomIndexGems = Random.Range(0, gemsPrefabs.Length);
+        float xAxisSpawnGem = -23;
+
+        pointToSpawnGems = new Vector3(xAxisSpawnGem, yAxisSpawnGem, GameManager.Instance.randomSpawnGemsPos);
         Instantiate(gemsPrefabs[randomIndexGems], pointToSpawnGems, rotationGem, spawnParent);
     }
 
     private void SpawnSpecialGem()
     {
-        Quaternion rotationGem = Quaternion.Euler(-90f, 0f, 0f);
-        pointToSpawnGems = new Vector3(-26f, 1f, GameManager.Instance.randomSpawnGemsPos);
+        float xAxisSpawnSpecialGem = -26;
+
+        pointToSpawnGems = new Vector3(xAxisSpawnSpecialGem, yAxisSpawnGem, GameManager.Instance.randomSpawnGemsPos);
         Instantiate(specialGemPrefab, pointToSpawnGems, rotationGem, spawnParent);
     }
 
