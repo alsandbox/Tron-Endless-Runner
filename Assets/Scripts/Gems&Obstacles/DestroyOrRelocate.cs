@@ -15,11 +15,6 @@ public class DestroyOrRelocate : MonoBehaviour
         spawnManagerScript = spawnManager.GetComponent<SpawnManager>();
     }
 
-    private void Update()
-    {
-        randomRotationObstacle = spawnManagerScript.randomRotationObstacle;
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         int targetNumberOfObstacles = 5;
@@ -52,6 +47,7 @@ public class DestroyOrRelocate : MonoBehaviour
 
     private void MoveObject()
     {
+        randomRotationObstacle = spawnManagerScript.randomRotationObstacle;
         targetObstacle.transform.rotation = Quaternion.Euler(-90, 0, randomRotationObstacle);
 
         Vector3 pointToRelocateObstacle = new Vector3(GameManager.Instance.randomXPos, 2.94f, GameManager.Instance.randomSpawnObjPos);
