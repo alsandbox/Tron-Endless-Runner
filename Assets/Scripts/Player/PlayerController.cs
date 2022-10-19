@@ -6,13 +6,12 @@ using UnityEngine.Events;
 public class PlayerController : MonoBehaviour
 {
     public UnityEvent gameOver;
+    public UnityEvent scoreToUI;
+    public UnityEvent lifeToUI;
 
     private int score;
     private int life;
     private int maxBestScore = 999999;
-
-    [SerializeField] private TextMeshProUGUI scoreText;
-    [SerializeField] private TextMeshProUGUI lifeText;
 
     [SerializeField] private AudioClip collectGems;
     [SerializeField] private AudioClip collisionWithObstacle;
@@ -95,14 +94,15 @@ public class PlayerController : MonoBehaviour
     private void UpdateScore(int scoreToAdd)
     {
         score += scoreToAdd;
-        scoreText.text = $"Score: {score}";
         GameManager.Instance.score = score;
+        scoreToUI.Invoke();
     }
 
     private void UpdateLife(int lifeToAdd)
     {
         life += lifeToAdd;
-        lifeText.text = $"Life: {life}";
+        GameManager.Instance.life = life;
+        lifeToUI.Invoke();
     }
 
     private void GameOver()
