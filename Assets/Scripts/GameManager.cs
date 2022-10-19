@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public bool isGameOver;
 
     public float speed;
-    private float maxSpeed = 45f;
+    public float maxSpeed = 45f;
     private float acceleration = .03f;
 
     public AudioSource soundEffectsSource;

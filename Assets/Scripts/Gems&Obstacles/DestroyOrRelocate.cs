@@ -1,6 +1,4 @@
 using UnityEngine;
-using System.Collections;
-using UnityEngine.Events;
 
 public class DestroyOrRelocate : MonoBehaviour
 {
@@ -24,18 +22,24 @@ public class DestroyOrRelocate : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        int targetNumberOfObstacles = 5;
+
         if (other.CompareTag("Obstacle"))
         {
             targetObstacle = other.gameObject;
-            countObstacles++;
 
-            if (countObstacles % 5 == 0)
+            if (GameManager.Instance.speed < GameManager.Instance.maxSpeed)
             {
-                GameManager.Instance.IncreaseSpeed();
-            }
-            if (countObstacles == 5)
-            {
-                spawnManagerScript.StopSpawnObstacles();
+                countObstacles++;
+
+                if (countObstacles % targetNumberOfObstacles == 0)
+                {
+                    GameManager.Instance.IncreaseSpeed();
+                }
+                if (countObstacles == targetNumberOfObstacles)
+                {
+                    spawnManagerScript.StopSpawnObstacles();
+                }
             }
             MoveObject();
         }
