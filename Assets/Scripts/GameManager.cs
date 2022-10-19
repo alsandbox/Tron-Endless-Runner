@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     public int score;
+    public int life;
     public int bestScore;
 
     public bool isGameOver;
@@ -63,6 +64,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //event is invoked from PlayerController, CollectGem method
     public void CheckBestScore()
     {
         if (score > bestScore)

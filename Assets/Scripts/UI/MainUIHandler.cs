@@ -11,6 +11,9 @@ public class MainUIHandler : BaseUIHandler
     [SerializeField] private GameObject gameOverUI;
     [SerializeField] private GameObject pauseUI;
 
+    [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI lifeText;
+
     [SerializeField] private TextMeshProUGUI currentScoreText;
     [SerializeField] private TextMeshProUGUI bestScoreText;
 
@@ -72,6 +75,18 @@ public class MainUIHandler : BaseUIHandler
         hintsUI.SetActive(false);
     }
 
+    //event is invoked from PlayerController, UpdateScore method
+    public void DisplayCurrentScore()
+    {
+        scoreText.text = $"Score: {GameManager.Instance.score}";
+    }
+
+    //event is invoked from PlayerController, UpdateLife method
+    public void DisplayCurrentLife()
+    {
+        lifeText.text = $"Life: {GameManager.Instance.life}";
+    }
+
     private void PauseGame()
     {
         gameIsPaused = true;
@@ -89,7 +104,7 @@ public class MainUIHandler : BaseUIHandler
         pauseSound.cutoffFrequency = 5000f;
     }
 
-    //called from PlayerController, UnityEvent
+    //event is invoked from PlayerController, GameOver method
     private void GameOver()
     {
         playedMainSound.Stop();
