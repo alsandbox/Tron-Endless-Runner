@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RepeatBackground : MonoBehaviour
 {
     private Vector2 savedOffset;
     private Vector2 offset;
+    private float maxValue = -1;
 
     private Renderer rndrer;
 
@@ -45,6 +44,11 @@ public class RepeatBackground : MonoBehaviour
     {
         offset += new Vector2(-(GameManager.Instance.speed * conversionFactor * Time.deltaTime), 0);
         this.rndrer.material.SetTextureOffset("_MainTex", offset);
+
+        if (offset.x < maxValue)
+        {
+            offset = Vector2.zero;
+        }
     }
 }
 
