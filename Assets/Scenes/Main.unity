@@ -628,7 +628,7 @@ MonoBehaviour:
   - {fileID: 7754835671880589937, guid: 59a365ac2c198a3449ae316cb8280bc2, type: 3}
   specialGemPrefab: {fileID: 7520308786397627686, guid: e29a45db174ae1e499124a58b2413502, type: 3}
   pointToSpawnObstacle: {x: 0, y: 0, z: 0}
-  randomRotationObstacle: 0
+  rotationObstacle: {x: 0, y: 0, z: 0, w: 0}
 --- !u!4 &336103347
 Transform:
   m_ObjectHideFlags: 0
@@ -1504,13 +1504,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0
+  life: 0
   bestScore: 0
   isGameOver: 0
   speed: 0
+  maxSpeed: 45
   soundEffectsSource: {fileID: 959820520}
   randomSpawnObjPos: 0
   randomSpawnGemsPos: 0
   randomXPos: 0
+  pointToRelocateObstacle: {x: 0, y: 0, z: 0}
 --- !u!4 &959820522
 Transform:
   m_ObjectHideFlags: 0
@@ -2675,7 +2678,7 @@ GameObject:
   - component: {fileID: 1736778203}
   - component: {fileID: 1736778202}
   m_Layer: 5
-  m_Name: BestScoreGameOver
+  m_Name: ScoreGameOverText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2989,17 +2992,46 @@ MonoBehaviour:
   scorePanelUI: {fileID: 74599935}
   gameOverUI: {fileID: 44456681}
   pauseUI: {fileID: 558035493}
-  currentScoreText: {fileID: 1289957510}
+  scoreText: {fileID: 1289957510}
+  lifeText: {fileID: 1804521163}
+  currentScoreText: {fileID: 1736778202}
   bestScoreText: {fileID: 775440113}
   restartButton: {fileID: 8746933395723094359}
   resumeButton: {fileID: 1090432750}
   backgroundSound: {fileID: 1915510662}
-  setBestScore:
+  stopSpawn:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 959820521}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: CheckBestScore
+      - m_Target: {fileID: 336103346}
+        m_TargetAssemblyTypeName: UnityEngine.MonoBehaviour, UnityEngine
+        m_MethodName: CancelInvoke
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  deleteListeners:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 336103346}
+        m_TargetAssemblyTypeName: SpawnManager, Assembly-CSharp
+        m_MethodName: DeleteListenerGameOver
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1863122069}
+        m_TargetAssemblyTypeName: DestroyOrRelocate, Assembly-CSharp
+        m_MethodName: DeleteListenerGameOver
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3606,7 +3638,23 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1289957510}
     - target: {fileID: 1415791728317319985, guid: 12523b07cb25c8e4297583713a3722ab, type: 3}
+      propertyPath: lifeToUI.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1415791728317319985, guid: 12523b07cb25c8e4297583713a3722ab, type: 3}
+      propertyPath: scoreToUI.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1415791728317319985, guid: 12523b07cb25c8e4297583713a3722ab, type: 3}
       propertyPath: checkBestScore.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1415791728317319985, guid: 12523b07cb25c8e4297583713a3722ab, type: 3}
+      propertyPath: lifeToUI.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1415791728317319985, guid: 12523b07cb25c8e4297583713a3722ab, type: 3}
+      propertyPath: scoreToUI.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1415791728317319985, guid: 12523b07cb25c8e4297583713a3722ab, type: 3}
@@ -3614,24 +3662,64 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1768089969}
     - target: {fileID: 1415791728317319985, guid: 12523b07cb25c8e4297583713a3722ab, type: 3}
+      propertyPath: lifeToUI.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1768089969}
+    - target: {fileID: 1415791728317319985, guid: 12523b07cb25c8e4297583713a3722ab, type: 3}
+      propertyPath: scoreToUI.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1768089969}
+    - target: {fileID: 1415791728317319985, guid: 12523b07cb25c8e4297583713a3722ab, type: 3}
+      propertyPath: lifeToUI.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1415791728317319985, guid: 12523b07cb25c8e4297583713a3722ab, type: 3}
       propertyPath: checkBestScore.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1415791728317319985, guid: 12523b07cb25c8e4297583713a3722ab, type: 3}
-      propertyPath: checkBestScore.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 959820521}
+      propertyPath: lifeToUI.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DisplayCurrentLife
+      objectReference: {fileID: 0}
     - target: {fileID: 1415791728317319985, guid: 12523b07cb25c8e4297583713a3722ab, type: 3}
-      propertyPath: checkBestScore.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      propertyPath: scoreToUI.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1415791728317319985, guid: 12523b07cb25c8e4297583713a3722ab, type: 3}
+      propertyPath: scoreToUI.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DisplayCurrentScore
+      objectReference: {fileID: 0}
+    - target: {fileID: 1415791728317319985, guid: 12523b07cb25c8e4297583713a3722ab, type: 3}
+      propertyPath: checkBestScore.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1415791728317319985, guid: 12523b07cb25c8e4297583713a3722ab, type: 3}
+      propertyPath: checkBestScore.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1415791728317319985, guid: 12523b07cb25c8e4297583713a3722ab, type: 3}
       propertyPath: checkBestScore.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: CheckBestScore
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1415791728317319985, guid: 12523b07cb25c8e4297583713a3722ab, type: 3}
+      propertyPath: lifeToUI.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MainUIHandler, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1415791728317319985, guid: 12523b07cb25c8e4297583713a3722ab, type: 3}
+      propertyPath: scoreToUI.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MainUIHandler, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1415791728317319985, guid: 12523b07cb25c8e4297583713a3722ab, type: 3}
       propertyPath: checkBestScore.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1415791728317319985, guid: 12523b07cb25c8e4297583713a3722ab, type: 3}
+      propertyPath: lifeToUI.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1415791728317319985, guid: 12523b07cb25c8e4297583713a3722ab, type: 3}
+      propertyPath: scoreToUI.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1415791728317319985, guid: 12523b07cb25c8e4297583713a3722ab, type: 3}
       propertyPath: checkBestScore.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName

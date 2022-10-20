@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class MovingObjects : MonoBehaviour
 {
+    private float rotationGemSpeed = 90;
     private void Update()
     {
         if (!GameManager.Instance.isGameOver)
@@ -20,7 +21,7 @@ public class MovingObjects : MonoBehaviour
     {
         if (gameObject.CompareTag("Gem") | gameObject.CompareTag("SpecialGem"))
         {
-            transform.Rotate(Vector3.forward, 90 * Time.deltaTime);
+            transform.Rotate(Vector3.forward, rotationGemSpeed * Time.deltaTime);
         }
     }
 }
