@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour
     public float randomSpawnGemsPos;
     public float randomXPos;
 
+    public Vector3 pointToRelocateObstacle;
+    private float yAxisSpawnObstacle = 2.94f;
+
     private void Awake()
     {
         if (Instance != null)
@@ -35,15 +38,12 @@ public class GameManager : MonoBehaviour
         bestScore = LoadBestScore(bestScore);
     }
 
-    private void Update()
-    {
-        RandomSpawnPos();
-    }
     public void RandomSpawnPos()
     {
         randomSpawnObjPos = Random.Range(-6f, 6f);
         randomSpawnGemsPos = Random.Range(-8f, 8f);
-        randomXPos = Random.Range(-35f, -60f);
+        randomXPos = Random.Range(-35f, -60f); 
+        pointToRelocateObstacle = new Vector3(randomXPos, yAxisSpawnObstacle, randomSpawnObjPos);
     }
 
     public void PlaySound(AudioClip clip)

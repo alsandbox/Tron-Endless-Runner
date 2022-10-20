@@ -1,24 +1,26 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DestroyOrRelocate : MonoBehaviour
 {
+    UnityEvent getRandomPos = new UnityEvent();
+
     private SpawnManager spawnManagerScript;
     [SerializeField] private GameObject spawnManager;
 
-    private float randomRotationObstacle;
-
     private int countObstacles;
+    private int targetNumberOfObstacles = 5;
+
     GameObject targetObstacle;
 
     private void Start()
     {
         spawnManagerScript = spawnManager.GetComponent<SpawnManager>();
+        getRandomPos.AddListener(GameManager.Instance.RandomSpawnPos);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        int targetNumberOfObstacles = 5;
-
         if (other.CompareTag("Obstacle"))
         {
             targetObstacle = other.gameObject;
@@ -47,12 +49,9 @@ public class DestroyOrRelocate : MonoBehaviour
 
     private void MoveObject()
     {
-        randomRotationObstacle = spawnManagerScript.randomRotationObstacle;
-        targetObstacle.transform.rotation = Quaternion.Euler(-90, 0, randomRotationObstacle);
-
-        Vector3 pointToRelocateObstacle = new Vector3(GameManager.Instance.randomXPos, 2.94f, GameManager.Instance.randomSpawnObjPos);
-
-        targetObstacle.transform.position = pointToRelocateObstacle;
+        targetObstacle.transform.rotation = spawnManagerScript.rotationObstacle;
+        getRandomPos.Invoke();
+        targetObstacle.transform.position = GameManager.Instance.pointToRelocateObstacle;
 
         Renderer targetObstacleMesh = targetObstacle.GetComponent<Renderer>();
 
@@ -60,5 +59,11 @@ public class DestroyOrRelocate : MonoBehaviour
         {
             targetObstacleMesh.enabled = true;
         }
+    }
+
+    //event is invoked from MainUIHandler, GameOver method
+    public void DeleteListenerGameOver()
+    {
+        getRandomPos.RemoveListener(GameManager.Instance.RandomSpawnPos);
     }
 }
