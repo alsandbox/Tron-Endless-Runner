@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using TMPro;
 using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
@@ -20,7 +18,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private ParticleSystem destroyObstacleParticle;
     private ParticleSystem pillarObstacleParticle;
 
-    [SerializeField] UnityEvent checkBestScore = new UnityEvent();
+    UnityEvent checkBestScore = new UnityEvent();
 
     private void Start()
     {

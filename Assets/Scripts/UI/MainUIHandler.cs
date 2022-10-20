@@ -22,6 +22,7 @@ public class MainUIHandler : BaseUIHandler
 
     [SerializeField] private GameObject backgroundSound;
     public UnityEvent stopSpawn;
+    public UnityEvent deleteListeners;
 
     private AudioSource playedMainSound;
     private AudioLowPassFilter pauseSound;
@@ -115,6 +116,7 @@ public class MainUIHandler : BaseUIHandler
         currentScoreText.text = $"Score: {GameManager.Instance.score}";
         bestScoreText.text = $"Best score: {GameManager.Instance.bestScore}";
         firstSelectedNone = true;
+        deleteListeners.Invoke();
     }
 
     private void RestartGame()
