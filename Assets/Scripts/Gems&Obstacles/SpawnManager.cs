@@ -20,8 +20,6 @@ public class SpawnManager : MonoBehaviour
     private Quaternion rotationGem;
     public Quaternion rotationObstacle;
 
-    UnityEvent getRandomPos = new UnityEvent();
-
     private float startDelay = 0.2f;
     private float startDelaySpecialGem = 0.5f;
     private float repeatRateObstacles = 1.4f;
@@ -37,7 +35,6 @@ public class SpawnManager : MonoBehaviour
 
     private void Start()
     {
-        getRandomPos.AddListener(GameManager.Instance.RandomSpawnPos);
         rotationGem = Quaternion.Euler(xRotation, 0f, 0f);
         InvokeRepeating("SpawnObstacle", startDelay, repeatRateObstacles);
         InvokeRepeating("SpawnCollectables", startDelay, repeatRateGems);
@@ -50,7 +47,7 @@ public class SpawnManager : MonoBehaviour
         randomRotationObstacle = Random.Range(0, 180);
         float xAxisSpawnObstacle = -30f;
         float yAxisSpawnObstacle = 2.94f;
-        getRandomPos.Invoke();
+        GameManager.Instance.RandomSpawnPos();
         
         rotationObstacle = Quaternion.Euler(xRotation, 0, randomRotationObstacle);
         pointToSpawnObstacle = new Vector3(xAxisSpawnObstacle, yAxisSpawnObstacle, GameManager.Instance.randomSpawnObjPos);
@@ -61,7 +58,7 @@ public class SpawnManager : MonoBehaviour
     {
         randomIndexGems = Random.Range(0, gemsPrefabs.Length);
         float xAxisSpawnGem = -23;
-        getRandomPos.Invoke();
+        GameManager.Instance.RandomSpawnPos();
        
         pointToSpawnGems = new Vector3(xAxisSpawnGem, yAxisSpawnGem, GameManager.Instance.randomSpawnGemsPos);
         Instantiate(gemsPrefabs[randomIndexGems], pointToSpawnGems, rotationGem, spawnParent);
@@ -70,7 +67,7 @@ public class SpawnManager : MonoBehaviour
     private void SpawnSpecialGem()
     {
         float xAxisSpawnSpecialGem = -26;
-        getRandomPos.Invoke();
+        GameManager.Instance.RandomSpawnPos();
         
         pointToSpawnGems = new Vector3(xAxisSpawnSpecialGem, yAxisSpawnGem, GameManager.Instance.randomSpawnGemsPos);
         Instantiate(specialGemPrefab, pointToSpawnGems, rotationGem, spawnParent);
@@ -79,11 +76,5 @@ public class SpawnManager : MonoBehaviour
     public void StopSpawnObstacles()
     {
         CancelInvoke("SpawnObstacle");
-    }
-
-    //event is invoked from MainUIHandler, GameOver method
-    public void DeleteListenerGameOver()
-    {
-        getRandomPos.RemoveListener(GameManager.Instance.RandomSpawnPos);
     }
 }

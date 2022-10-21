@@ -3,8 +3,6 @@ using UnityEngine.Events;
 
 public class DestroyOrRelocate : MonoBehaviour
 {
-    UnityEvent getRandomPos = new UnityEvent();
-
     private SpawnManager spawnManagerScript;
     [SerializeField] private GameObject spawnManager;
 
@@ -16,7 +14,6 @@ public class DestroyOrRelocate : MonoBehaviour
     private void Start()
     {
         spawnManagerScript = spawnManager.GetComponent<SpawnManager>();
-        getRandomPos.AddListener(GameManager.Instance.RandomSpawnPos);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -50,7 +47,8 @@ public class DestroyOrRelocate : MonoBehaviour
     private void MoveObject()
     {
         targetObstacle.transform.rotation = spawnManagerScript.rotationObstacle;
-        getRandomPos.Invoke();
+        GameManager.Instance.RandomSpawnPos();
+
         targetObstacle.transform.position = GameManager.Instance.pointToRelocateObstacle;
 
         Renderer targetObstacleMesh = targetObstacle.GetComponent<Renderer>();
@@ -59,11 +57,5 @@ public class DestroyOrRelocate : MonoBehaviour
         {
             targetObstacleMesh.enabled = true;
         }
-    }
-
-    //event is invoked from MainUIHandler, GameOver method
-    public void DeleteListenerGameOver()
-    {
-        getRandomPos.RemoveListener(GameManager.Instance.RandomSpawnPos);
     }
 }
