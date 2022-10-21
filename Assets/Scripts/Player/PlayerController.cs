@@ -18,13 +18,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private ParticleSystem destroyObstacleParticle;
     private ParticleSystem pillarObstacleParticle;
 
-    UnityEvent checkBestScore = new UnityEvent();
-
     private void Start()
     {
         score = 0;
         UpdateScore(0);
-        checkBestScore.AddListener(GameManager.Instance.CheckBestScore);
     }
 
     public void OnTriggerEnter(Collider other)
@@ -58,8 +55,8 @@ public class PlayerController : MonoBehaviour
     {
         GameManager.Instance.PlaySound(collectGems);
         UpdateScore(1);
-        
-        checkBestScore.Invoke();
+
+        GameManager.Instance.RandomSpawnPos();
 
         Destroy(targetGem);
 
@@ -107,6 +104,5 @@ public class PlayerController : MonoBehaviour
     {
         GameManager.Instance.isGameOver = true;
         gameOver.Invoke();
-        checkBestScore.RemoveListener(GameManager.Instance.CheckBestScore);
     }
 }
