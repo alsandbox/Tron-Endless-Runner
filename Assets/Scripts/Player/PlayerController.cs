@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
         GameManager.Instance.PlaySound(collectGems);
         UpdateScore(1);
 
-        GameManager.Instance.CheckBestScore();
+        GameManager.Instance.RandomSpawnPos();
 
         Destroy(targetGem);
 
