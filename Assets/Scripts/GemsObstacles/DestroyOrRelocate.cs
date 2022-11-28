@@ -30,10 +30,6 @@ public class DestroyOrRelocate : MonoBehaviour
                 {
                     GameManager.Instance.IncreaseSpeed();
                 }
-                if (countObstacles == targetNumberOfObstacles)
-                {
-                    spawnManagerScript.StopSpawnObstacles();
-                }
             }
             MoveObject();
         }

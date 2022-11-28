@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using System.Collections;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -36,10 +37,46 @@ public class SpawnManager : MonoBehaviour
     private void Start()
     {
         rotationGem = Quaternion.Euler(xRotation, 0f, 0f);
-        InvokeRepeating("SpawnObstacle", startDelay, repeatRateObstacles);
-        InvokeRepeating("SpawnCollectables", startDelay, repeatRateGems);
-        InvokeRepeating("SpawnSpecialGem", startDelaySpecialGem, repeatRateSpecialGem);
+
+        StartCoroutine(CallObstacles());
+        StartCoroutine(CallGems());
+        StartCoroutine(CallSpecialGem()); 
     }
+
+    IEnumerator CallObstacles()
+    {
+        int spawnedObstacles = 0;
+        int targetNumberOfObstacles = 5;
+
+        while (!GameManager.Instance.isGameOver & spawnedObstacles < targetNumberOfObstacles)
+        {
+            yield return new WaitForSeconds(startDelay);
+            SpawnObstacle();
+            yield return new WaitForSeconds(repeatRateObstacles);
+            spawnedObstacles++;
+        }
+    }
+
+    IEnumerator CallGems()
+    {
+        while (!GameManager.Instance.isGameOver)
+        {
+            yield return new WaitForSeconds(startDelay);
+            SpawnCollectables();
+            yield return new WaitForSeconds(repeatRateGems);
+        }
+    }
+
+    IEnumerator CallSpecialGem()
+    {
+        while (!GameManager.Instance.isGameOver)
+        {
+            yield return new WaitForSeconds(startDelaySpecialGem);
+            SpawnSpecialGem();
+            yield return new WaitForSeconds(repeatRateSpecialGem);
+        }
+    }
+
 
     public void SpawnObstacle()
     {
@@ -71,10 +108,5 @@ public class SpawnManager : MonoBehaviour
         
         pointToSpawnGems = new Vector3(xAxisSpawnSpecialGem, yAxisSpawnGem, GameManager.Instance.randomSpawnGemsPos);
         Instantiate(specialGemPrefab, pointToSpawnGems, rotationGem, spawnParent);
-    }
-
-    public void StopSpawnObstacles()
-    {
-        CancelInvoke("SpawnObstacle");
     }
 }

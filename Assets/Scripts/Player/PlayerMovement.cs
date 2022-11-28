@@ -6,6 +6,10 @@ public class PlayerMovement : MonoBehaviour
 {
     private float horizontalInput;
     private float verticalInput;
+    private float SpeedReductionSideways
+    {
+        get => GameManager.Instance.speed / 1.5f;
+    }
 
     private void Update()
     {
@@ -16,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
 
             Vector3 playerInput = new Vector3(verticalInput, 0, horizontalInput);
 
-            transform.Translate(playerInput * (GameManager.Instance.speed / 1.5f * Time.deltaTime));
+            transform.Translate(playerInput * (SpeedReductionSideways * Time.deltaTime));
 
             PreventOutOfBounds();
         }
