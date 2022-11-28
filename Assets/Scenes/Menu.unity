@@ -651,10 +651,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0
+  life: 0
   bestScore: 0
   isGameOver: 0
   speed: 0
+  maxSpeed: 45
   soundEffectsSource: {fileID: 830840772}
+  randomSpawnObjPos: 0
+  randomSpawnGemsPos: 0
+  randomXPos: 0
+  pointToRelocateObstacle: {x: 0, y: 0, z: 0}
 --- !u!4 &830840774
 Transform:
   m_ObjectHideFlags: 0

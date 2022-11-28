@@ -241,8 +241,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  scoreText: {fileID: 0}
-  lifeText: {fileID: 0}
+  scoreToUI:
+    m_PersistentCalls:
+      m_Calls: []
+  lifeToUI:
+    m_PersistentCalls:
+      m_Calls: []
   collectGems: {fileID: 8300000, guid: 50861ff83c3a47142bb397f7cf079c06, type: 3}
   collisionWithObstacle: {fileID: 8300000, guid: 4493ae0643a961245be4e379c2f3d227, type: 3}
   gameOverSound: {fileID: 8300000, guid: 628ea04fa84452f4092711792bb8a338, type: 3}
