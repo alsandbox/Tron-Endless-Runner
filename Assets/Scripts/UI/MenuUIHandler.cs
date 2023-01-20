@@ -19,6 +19,7 @@ public class MenuUIHandler : BaseUIHandler
     protected override void Update()
     {
         base.Update();
+
         SetSelectedButton(startButton);
         transitionAnimator = GetComponent<Animator>();
     }

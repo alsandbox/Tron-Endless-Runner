@@ -65,6 +65,7 @@ public class MainUIHandler : BaseUIHandler
     protected override void Update()
     {
         base.Update();
+
         if (Input.GetKeyDown(KeyCode.Escape) & !GameManager.Instance.isGameOver)
         {
             if (gameIsPaused)
@@ -118,6 +119,11 @@ public class MainUIHandler : BaseUIHandler
 
     private void PauseGame()
     {
+        if (transitionAnimator.gameObject.activeSelf)
+        {
+            transitionAnimator.gameObject.SetActive(false);
+        }
+
         gameIsPaused = true;
         pauseUI.SetActive(true);
         Time.timeScale = 0f;
