@@ -15,6 +15,8 @@ public class SelectButtonByKeyboard : MonoBehaviour, ISelectHandler
 
     public void OnSelect(BaseEventData eventData)
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         GameManager.Instance.PlaySound(hoverAudio);
         transitionAnimator.SetTrigger("Selected");
     }

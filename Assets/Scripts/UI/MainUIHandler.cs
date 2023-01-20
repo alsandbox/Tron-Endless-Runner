@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 using TMPro;
+using UnityEngine.Rendering;
 
 public class MainUIHandler : BaseUIHandler
 {
@@ -38,7 +39,16 @@ public class MainUIHandler : BaseUIHandler
         pauseSound = backgroundSound.GetComponent<AudioLowPassFilter>();
     }
 
-    private void Update()
+    private void Start()
+    {
+        TransitionUI();
+
+        if (Cursor.visible & Cursor.lockState == CursorLockMode.Locked)
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+    }
 
     private void TransitionUI()
     {
@@ -52,7 +62,9 @@ public class MainUIHandler : BaseUIHandler
         transitionAnimator.gameObject.SetActive(false);
     }
 
+    protected override void Update()
     {
+        base.Update();
         if (Input.GetKeyDown(KeyCode.Escape) & !GameManager.Instance.isGameOver)
         {
             if (gameIsPaused)

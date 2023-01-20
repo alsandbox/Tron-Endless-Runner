@@ -16,9 +16,9 @@ public class MenuUIHandler : BaseUIHandler
     {
         SetBestScore();
     }
-
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
         SetSelectedButton(startButton);
         transitionAnimator = GetComponent<Animator>();
     }

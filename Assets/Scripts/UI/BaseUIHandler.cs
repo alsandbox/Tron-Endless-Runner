@@ -2,14 +2,23 @@ using System.Collections;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class BaseUIHandler : MonoBehaviour
 {
     [SerializeField] protected AudioClip hoverAudio;
     [SerializeField] protected AudioClip clickAudio;
-
+    
     protected bool firstSelectedNone = true;
 
+    protected virtual void Update()
+    {
+        if (Input.GetMouseButton(0) | Input.GetMouseButton(1) | Input.GetMouseButton(2)) 
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+    }
 
     protected void SetSelectedButton(GameObject targetButton)
     {
