@@ -26,6 +26,9 @@ public class MainUIHandler : BaseUIHandler
     private AudioSource playedMainSound;
     private AudioLowPassFilter pauseSound;
 
+    [SerializeField] protected Animator transitionAnimator;
+    private readonly float delayTime = 1f;
+
     private bool gameIsPaused;
 
     private void Awake()
@@ -36,6 +39,19 @@ public class MainUIHandler : BaseUIHandler
     }
 
     private void Update()
+
+    private void TransitionUI()
+    {
+        transitionAnimator.SetTrigger("End");
+        StartCoroutine(TransitionDelay());
+    }
+
+    IEnumerator TransitionDelay()
+    {
+        yield return new WaitForSeconds(delayTime);
+        transitionAnimator.gameObject.SetActive(false);
+    }
+
     {
         if (Input.GetKeyDown(KeyCode.Escape) & !GameManager.Instance.isGameOver)
         {
