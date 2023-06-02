@@ -25,6 +25,7 @@ public class MainUIHandler : BaseUIHandler
     public UnityEvent stopSpawn;
 
     private AudioSource playedMainSound;
+    public AudioSource webglPauseAudio;
     private AudioLowPassFilter pauseSound;
 
     [SerializeField] protected Animator transitionAnimator;
@@ -105,13 +106,13 @@ public class MainUIHandler : BaseUIHandler
         hintsUI.SetActive(false);
     }
 
-    //event is invoked from PlayerController, UpdateScore method
+    //The event is invoked from PlayerController, UpdateScore method
     public void DisplayCurrentScore()
     {
         scoreText.text = $"Score: {GameManager.Instance.score}";
     }
 
-    //event is invoked from PlayerController, UpdateLife method
+    //The event is invoked from PlayerController, UpdateLife method
     public void DisplayCurrentLife()
     {
         lifeText.text = $"Life: {GameManager.Instance.life}";
@@ -128,6 +129,12 @@ public class MainUIHandler : BaseUIHandler
         pauseUI.SetActive(true);
         Time.timeScale = 0f;
         pauseSound.cutoffFrequency = 800f;
+
+#if UNITY_WEBGL
+       playedMainSound.Pause();
+       webglPauseAudio.time = playedMainSound.time;
+       webglPauseAudio.PlayScheduled(webglPauseAudio.time);
+#endif
     }
 
     private void ResumeGame()
@@ -137,7 +144,14 @@ public class MainUIHandler : BaseUIHandler
         Time.timeScale = 1f;
         gameIsPaused = false;
         pauseSound.cutoffFrequency = 5000f;
+
+#if UNITY_WEBGL
+       playedMainSound.time = webglPauseAudio.time;
+       webglPauseAudio.Stop();
+       playedMainSound.UnPause();
+#endif
     }
+
 
     //event is invoked from PlayerController, GameOver method
     private void GameOver()

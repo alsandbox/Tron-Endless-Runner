@@ -38,6 +38,11 @@ public class GameManager : MonoBehaviour
         bestScore = LoadBestScore(bestScore);
     }
 
+    private void Start()
+    {
+        soundEffectsSource = GetComponent<AudioSource>();
+    }
+
     public void RandomSpawnPos()
     {
         randomSpawnObjPos = Random.Range(-6f, 6f);
