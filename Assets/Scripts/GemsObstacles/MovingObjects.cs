@@ -3,6 +3,9 @@ using UnityEngine;
 public class MovingObjects : MonoBehaviour
 {
     private float rotationGemSpeed = 90;
+    public TagsHandler tagsHandler;
+
+
     private void Update()
     {
         if (!GameManager.Instance.isGameOver)
@@ -19,7 +22,7 @@ public class MovingObjects : MonoBehaviour
 
     private void RotateGems()
     {
-        if (gameObject.CompareTag("Gem") | gameObject.CompareTag("SpecialGem"))
+        if (gameObject.CompareTag(tagsHandler.gem) | gameObject.CompareTag(tagsHandler.specialGem))
         {
             transform.Rotate(Vector3.forward, rotationGemSpeed * Time.deltaTime);
         }

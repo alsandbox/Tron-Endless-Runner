@@ -1,11 +1,12 @@
 using UnityEngine;
-using UnityEngine.Events;
 
 public class ObjectsMergePrevention : MonoBehaviour
 {
+    public TagsHandler tagsHandler;
+
     private void OnTriggerEnter(Collider other)
     {
-        if (!(other.gameObject.CompareTag("World") | other.gameObject.CompareTag("Player")))
+        if (!(other.gameObject.CompareTag(tagsHandler.world) | other.gameObject.CompareTag(tagsHandler.player)))
         {
             GameManager.Instance.RandomSpawnPos();
 

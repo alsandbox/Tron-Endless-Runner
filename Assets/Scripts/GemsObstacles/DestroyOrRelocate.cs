@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Events;
 
 public class DestroyOrRelocate : MonoBehaviour
 {
@@ -11,6 +10,8 @@ public class DestroyOrRelocate : MonoBehaviour
 
     GameObject targetObstacle;
 
+    public TagsHandler tagsHandler;
+
     private void Start()
     {
         spawnManagerScript = spawnManager.GetComponent<SpawnManager>();
@@ -18,7 +19,7 @@ public class DestroyOrRelocate : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Obstacle"))
+        if (other.CompareTag(tagsHandler.obstacle))
         {
             targetObstacle = other.gameObject;
 
@@ -34,7 +35,7 @@ public class DestroyOrRelocate : MonoBehaviour
             MoveObject();
         }
 
-        if (other.CompareTag("Gem") || other.CompareTag("SpecialGem"))
+        if (other.CompareTag(tagsHandler.gem) || other.CompareTag(tagsHandler.specialGem))
         {
             Destroy(other.gameObject);
         }

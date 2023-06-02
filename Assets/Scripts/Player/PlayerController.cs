@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private ParticleSystem destroyObstacleParticle;
     private ParticleSystem pillarObstacleParticle;
+    public TagsHandler tagsHandler;
 
     private void Start()
     {
@@ -26,21 +27,21 @@ public class PlayerController : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Gem") & score < maxBestScore)
+        if (other.gameObject.CompareTag(tagsHandler.gem) & score < maxBestScore)
         {
             CollectGem(other.gameObject);
         }
-        else if (other.gameObject.CompareTag("SpecialGem"))
+        else if (other.gameObject.CompareTag(tagsHandler.specialGem))
         {
             GameManager.Instance.PlaySound(collectGems);
             UpdateLife(1);
             Destroy(other.gameObject);
         }
-        else if (!other.gameObject.CompareTag("Obstacle") & score == maxBestScore)
+        else if (!other.gameObject.CompareTag(tagsHandler.obstacle) & score == maxBestScore)
         {
             Destroy(other.gameObject);
         }
-        else if (other.gameObject.CompareTag("Obstacle") & life > 0)
+        else if (other.gameObject.CompareTag(tagsHandler.obstacle) & life > 0)
         {
             DestroyObstacle(other.gameObject);
         }

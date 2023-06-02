@@ -131,6 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6865de29910162348b50240173a928c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tagsHandler: {fileID: 11400000, guid: 76425df421c30014f8391a2028a38559, type: 2}
 --- !u!114 &-9067989285597818841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,6 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88df89e80deb5ca4fbcdc39aa90e0908, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tagsHandler: {fileID: 11400000, guid: 76425df421c30014f8391a2028a38559, type: 2}
 --- !u!1001 &4062059043113302113
 PrefabInstance:
   m_ObjectHideFlags: 0

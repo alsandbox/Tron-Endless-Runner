@@ -243,14 +243,39 @@ MonoBehaviour:
         m_CallState: 2
   scoreToUI:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: MainUIHandler, Assembly-CSharp
+        m_MethodName: DisplayCurrentScore
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   lifeToUI:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: MainUIHandler, Assembly-CSharp
+        m_MethodName: DisplayCurrentLife
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   collectGems: {fileID: 8300000, guid: 50861ff83c3a47142bb397f7cf079c06, type: 3}
   collisionWithObstacle: {fileID: 8300000, guid: 4493ae0643a961245be4e379c2f3d227, type: 3}
   gameOverSound: {fileID: 8300000, guid: 628ea04fa84452f4092711792bb8a338, type: 3}
   destroyObstacleParticle: {fileID: 4215146009592601697, guid: 5a058225160f2f449b84ffcb7f502fa9, type: 3}
+  tagsHandler: {fileID: 11400000, guid: 76425df421c30014f8391a2028a38559, type: 2}
 --- !u!114 &1608088453
 MonoBehaviour:
   m_ObjectHideFlags: 0
