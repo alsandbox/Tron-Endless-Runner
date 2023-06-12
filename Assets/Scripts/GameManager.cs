@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //event is invoked from PlayerController, CollectGem method
+    //The event is invoked from the PlayerController (CollectGem method)
     public void CheckBestScore()
     {
         if (score > bestScore)

@@ -106,13 +106,13 @@ public class MainUIHandler : BaseUIHandler
         hintsUI.SetActive(false);
     }
 
-    //The event is invoked from PlayerController, UpdateScore method
+    //The event is invoked from PlayerController (UpdateScore method)
     public void DisplayCurrentScore()
     {
         scoreText.text = $"Score: {GameManager.Instance.score}";
     }
 
-    //The event is invoked from PlayerController, UpdateLife method
+    //The event is invoked from PlayerController (UpdateLife method)
     public void DisplayCurrentLife()
     {
         lifeText.text = $"Life: {GameManager.Instance.life}";
@@ -153,7 +153,7 @@ public class MainUIHandler : BaseUIHandler
     }
 
 
-    //event is invoked from PlayerController, GameOver method
+    //The event is invoked from PlayerController (GameOver method)
     private void GameOver()
     {
         stopSpawn.Invoke();
