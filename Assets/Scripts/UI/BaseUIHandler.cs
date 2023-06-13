@@ -45,11 +45,11 @@ public class BaseUIHandler : MonoBehaviour
 
         #if UNITY_EDITOR
             EditorApplication.ExitPlaymode();
-        #elif (UNITY_WEBGL)
-            Application.OpenURL("about:blank");
-        #else
+#elif (UNITY_WEBGL)
+            SceneManager.LoadScene(0);
+#else
             Application.Quit();
-        #endif
+#endif
     }
 
     protected void ExitGame()
