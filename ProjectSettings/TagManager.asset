@@ -6,9 +6,6 @@ TagManager:
   tags:
   - Gem
   - Obstacle
-  - BestScore
-  - DestroyOutOfBounds
-  - GameOver
   - SpecialGem
   - World
   layers:
