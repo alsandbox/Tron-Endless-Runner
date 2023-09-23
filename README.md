@@ -5,8 +5,10 @@
 * [Features and Highlights](#features-and-highlights)
 * [Technical Details](#technical-details)
 * [Tools and Technologies](#tools-and-technologies)
-* 
 
+## Builds
+* [WebGL](https://allros.itch.io/tron-endless-runner)
+* Windows
 
 ## Project Overview
 For my first project, I decided to take the popular genre of endless runners and mix it with the aesthetics of Tron. In this game player takes control of a bike races. The objective is simple navigate the digital landscape, collect gems and extra lives, and overcome challenges as the velocity intensifies. This is my first project that I made on my own from scratch (not counting assets, of course).
