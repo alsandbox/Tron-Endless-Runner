@@ -8,7 +8,7 @@
 * [Tools and Technologies](#tools-and-technologies)
 
 ## Builds
-* [WebGL](https://allros.itch.io/tron-endless-runner)
+* [WebGL](https://alsandbox.github.io/Tron-Endless-Runner/) 
 * [Windows](https://github.com/alsandbox/Tron-Endless-Runner/releases/tag/winbuild)
 
 ## Project Overview
