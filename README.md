@@ -6,6 +6,7 @@
 * [Features and Highlights](#features-and-highlights)
 * [Technical Details](#technical-details)
 * [Tools and Technologies](#tools-and-technologies)
+* [Gifs](#gifs)
 
 ## Builds
 * [WebGL](https://alsandbox.github.io/Tron-Endless-Runner/) 
@@ -13,6 +14,8 @@
 
 ## Project Overview
 For my first project, I decided to take the popular genre of endless runners and mix it with the aesthetics of Tron. In this game, player takes control of bike races. The objective is simple navigate the digital landscape, collect gems and extra lives, and overcome challenges as the velocity intensifies. This is the first project that I made on my own from scratch (not counting assets, of course).
+![](https://github.com/alsandbox/Tron-Endless-Runner/blob/main/ReadmeGifs/gameplay.gif)
+
 
 ## Features and Highlights
 #### Key Features:
@@ -56,3 +59,17 @@ I made use of the Canvas Scaler component to make the game's UI responsive at va
 * **Audio**
    - Main Background Sound: [8-Bit Arcade - Tron Legacy (End Titles) [8-Bit Computer Game Version]](https://open.spotify.com/track/2TidjDeKyGnj0va4xt42Vu?si=fb93294c463a4a4c)
    - All other sounds: [JDSherbert - Ultimate UI Sound Effect Pack [SFX] (Deprecated)](https://assetstore.unity.com/packages/audio/sound-fx/ultimate-ui-sound-effect-pack-sfx-228228)
+
+## Gifs
+I like the minimalism and inconspicuous details, such as the ability to navigate menus with both the mouse and keyboard.
+![](https://github.com/alsandbox/Tron-Endless-Runner/blob/main/ReadmeGifs/menu-cursor.gif)
+![](https://github.com/alsandbox/Tron-Endless-Runner/blob/main/ReadmeGifs/menu-keyboard.gif)
+
+Hints for a new player
+![](https://github.com/alsandbox/Tron-Endless-Runner/blob/main/ReadmeGifs/hints.gif)
+
+Pause menu
+![](https://github.com/alsandbox/Tron-Endless-Runner/blob/main/ReadmeGifs/game-menu.gif)
+
+The use of extra life
+![](https://github.com/alsandbox/Tron-Endless-Runner/blob/main/ReadmeGifs/gameplay-using-life.gif)
