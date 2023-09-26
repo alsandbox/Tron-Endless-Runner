@@ -34,21 +34,88 @@ For my first project, I decided to take the popular genre of endless runners and
 ## Technical Details
 #### Singleton Pattern Implementation.
 I employed the Singleton design pattern to demonstrate my understanding of creating globally accessible and unique instances. This pattern is the most popular and controversial, as well as beginner-friendly. 
+```csharp
+public class GameManager : MonoBehaviour
+{
+    public static GameManager Instance { get; private set; }
+
+    ...
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+
+        ...
+    }
+    ...
+}
+```
 
 #### Data Persistence between sessions. 
 I implemented two different approaches only to show my knowledge. In my case, I could get by with just PlayerPrefs, but in the case of a complex game I would use PlayerPrefs for simple non-sensitive data and Serializing for more complex non-sensitive data.
 * **Serializing data & JSON**. I chose Serializing data and JSON to save the best score between sessions. 
+```csharp
+//GameManager.cs
+[System.Serializable]
+    class SaveData
+    {
+        public int BestScore;
+    }
+
+    private void SaveBestScore(int bestScore) 
+    {
+        SaveData data = new SaveData();
+
+        data.BestScore = bestScore;
+
+        string json = JsonUtility.ToJson(data);
+        File.WriteAllText(Application.persistentDataPath + "/savebestscore.json", json);
+    }
+
+    private int LoadBestScore(int bestScore)
+    {
+        string path = Application.persistentDataPath + "/savebestscore.json";
+
+        if (File.Exists(path))
+        {
+            string json = File.ReadAllText(path);
+            SaveData data = JsonUtility.FromJson<SaveData>(json);
+
+            bestScore = data.BestScore;
+        }
+        return bestScore;
+    }
+```
+
 * **PlayerPrefs**. I used PlayerPrefs to display helpful hints exclusively for first-time players, sparing those playing a second or more time from unnecessary information.
+```csharp
+//MainUIHandler.cs
+//this method is called in Awake
+    private void Hints()
+    {
+        if (!PlayerPrefs.HasKey("FirstTimeOpening"))
+        {
+            PlayerPrefs.SetInt("FirstTimeOpening", 0);
+            StartCoroutine(HintsForTime());
+        }
+    }
+```
 
 #### Scriptable Objects.
-I used Scriptable Object to handle tags. It allows for enhanced code organization and simplifies debugging instead of relying on string-based tags directly in my scripts.
+I used Scriptable Object [to handle tags](https://github.com/alsandbox/Tron-Endless-Runner/blob/main/Assets/Scripts/TagsHandler.cs). It allows for enhanced code organization and simplifies debugging instead of relying on string-based tags directly in my scripts.
 
 #### Adaptive UI Design with Canvas Scaler.
 I made use of the Canvas Scaler component to make the game's UI responsive at various screen sizes and resolutions.
 
 #### Resource Optimization Techniques.
-* **Procedural Dynamic Object Recycling**. I implemented a Procedural Dynamic Object Recycling system to optimize performance and memory efficiency. In the game, obstacles are continuously spawned until the first obstacle touches a specific object in the scene. At that point, the spamming stops, and the recycled object's rotation angle is dynamically altered while its position resets to a random distance within a predefined range. This approach introduces variability in obstacle positions relative to each other, reducing the likelihood of collisions between obstacles and gems. By reusing objects and maintaining relative uniqueness, this system significantly reduces the load on the garbage collector, resulting in a smoother gameplay experience and improved overall performance.
-* **Faux Motion Floor Texture.** By simple texture scrolling, I achieved the visual effect of a dynamically moving floor surface for performance optimization. You don't need to create a large track and store it in memory, or constantly create parts of the track with obstacles on it if you can create the illusion of the player moving forward on one small section of the quad.
+* **Procedural Dynamic Object Recycling**. I created a Procedural Dynamic Object Recycling system to optimize performance and memory efficiency. In the game, obstacles are continuously spawned until the first obstacle touches a specific object in the scene. At that point, the spamming stops, and the recycled object's rotation angle is dynamically altered while its position resets to a random distance within a predefined range. This approach introduces variability in obstacle positions relative to each other, reducing the likelihood of collisions between obstacles and gems. By reusing objects and maintaining relative uniqueness, this system significantly reduces the load on the garbage collector, resulting in a smoother gameplay experience and improved overall performance. The code for this idea is spread across several scripts in [this folder](https://github.com/alsandbox/Tron-Endless-Runner/tree/main/Assets/Scripts/GemsObstacles).
+* **Faux Motion Floor Texture.** By simple [texture scrolling](https://github.com/alsandbox/Tron-Endless-Runner/blob/main/Assets/Scripts/Floor/RepeatBackground.cs), I achieved the visual effect of a dynamically moving floor surface for performance optimization. You don't need to create a large track and store it in memory, or constantly create parts of the track with obstacles on it if you can create the illusion of the player moving forward on one small section of the quad.
 
 ------
 ## Tools and Technologies
