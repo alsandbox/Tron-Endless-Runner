@@ -68,14 +68,17 @@ I made use of the Canvas Scaler component to make the game's UI responsive at va
 
 #### I like the minimalism and inconspicuous details, such as the ability to navigate menus with both the mouse and keyboard.
 ![](https://github.com/alsandbox/Tron-Endless-Runner/blob/main/ReadmeGifs/menu-cursor.gif)
-_____
+
 ![](https://github.com/alsandbox/Tron-Endless-Runner/blob/main/ReadmeGifs/menu-keyboard.gif)
+
 
 #### Hints for a new player
 ![](https://github.com/alsandbox/Tron-Endless-Runner/blob/main/ReadmeGifs/hints.gif)
 
+
 #### Pause menu
 ![](https://github.com/alsandbox/Tron-Endless-Runner/blob/main/ReadmeGifs/game-menu.gif)
+
 
 #### The use of extra life
 ![](https://github.com/alsandbox/Tron-Endless-Runner/blob/main/ReadmeGifs/gameplay-using-life.gif)
