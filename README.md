@@ -8,15 +8,17 @@
 * [Tools and Technologies](#tools-and-technologies)
 * [Gifs](#gifs)
 
+------
 ## Builds
 * [WebGL](https://alsandbox.github.io/Tron-Endless-Runner/) 
 * [Windows](https://github.com/alsandbox/Tron-Endless-Runner/releases/tag/winbuild)
 
+------
 ## Project Overview
 For my first project, I decided to take the popular genre of endless runners and mix it with the aesthetics of Tron. In this game, player takes control of bike races. The objective is simple navigate the digital landscape, collect gems and extra lives, and overcome challenges as the velocity intensifies. This is the first project that I made on my own from scratch (not counting assets, of course).
 ![](https://github.com/alsandbox/Tron-Endless-Runner/blob/main/ReadmeGifs/gameplay.gif)
 
-
+------
 ## Features and Highlights
 #### Key Features:
 * **Strategic Dodging**: You need to maneuver between obstacles, avoiding collisions and saving points and lives.
@@ -28,7 +30,7 @@ For my first project, I decided to take the popular genre of endless runners and
 * **Faux Motion Floor Texture**. Instead of a moving bike and constant road creation, I scroll the texture on the floor in real time, synchronizing it with the movement of obstacles and gems.
 * **Data Persistence between sessions**. I made sure that the player only sees the hints during their first session on the device, as well as being able to view their best scores on the main menu and at the game over screen, regardless of the session.
 
-
+------
 ## Technical Details
 #### Singleton Pattern Implementation.
 I employed the Singleton design pattern to demonstrate my understanding of creating globally accessible and unique instances. This pattern is the most popular and controversial, as well as beginner-friendly. 
@@ -48,6 +50,7 @@ I made use of the Canvas Scaler component to make the game's UI responsive at va
 * **Procedural Dynamic Object Recycling**. I implemented a Procedural Dynamic Object Recycling system to optimize performance and memory efficiency. In the game, obstacles are continuously spawned until the first obstacle touches a specific object in the scene. At that point, the spamming stops, and the recycled object's rotation angle is dynamically altered while its position resets to a random distance within a predefined range. This approach introduces variability in obstacle positions relative to each other, reducing the likelihood of collisions between obstacles and gems. By reusing objects and maintaining relative uniqueness, this system significantly reduces the load on the garbage collector, resulting in a smoother gameplay experience and improved overall performance.
 * **Faux Motion Floor Texture.** By simple texture scrolling, I achieved the visual effect of a dynamically moving floor surface for performance optimization. You don't need to create a large track and store it in memory, or constantly create parts of the track with obstacles on it if you can create the illusion of the player moving forward on one small section of the quad.
 
+------
 ## Tools and Technologies
 #### Development Tools
 * Unity game engine (version 2021.3.7f1)
@@ -60,16 +63,18 @@ I made use of the Canvas Scaler component to make the game's UI responsive at va
    - Main Background Sound: [8-Bit Arcade - Tron Legacy (End Titles) [8-Bit Computer Game Version]](https://open.spotify.com/track/2TidjDeKyGnj0va4xt42Vu?si=fb93294c463a4a4c)
    - All other sounds: [JDSherbert - Ultimate UI Sound Effect Pack [SFX] (Deprecated)](https://assetstore.unity.com/packages/audio/sound-fx/ultimate-ui-sound-effect-pack-sfx-228228)
 
+------
 ## Gifs
-I like the minimalism and inconspicuous details, such as the ability to navigate menus with both the mouse and keyboard.
+
+#### I like the minimalism and inconspicuous details, such as the ability to navigate menus with both the mouse and keyboard.
 ![](https://github.com/alsandbox/Tron-Endless-Runner/blob/main/ReadmeGifs/menu-cursor.gif)
 ![](https://github.com/alsandbox/Tron-Endless-Runner/blob/main/ReadmeGifs/menu-keyboard.gif)
 
-Hints for a new player
+#### Hints for a new player
 ![](https://github.com/alsandbox/Tron-Endless-Runner/blob/main/ReadmeGifs/hints.gif)
 
-Pause menu
+#### Pause menu
 ![](https://github.com/alsandbox/Tron-Endless-Runner/blob/main/ReadmeGifs/game-menu.gif)
 
-The use of extra life
+#### The use of extra life
 ![](https://github.com/alsandbox/Tron-Endless-Runner/blob/main/ReadmeGifs/gameplay-using-life.gif)
