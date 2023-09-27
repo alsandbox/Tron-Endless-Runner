@@ -112,6 +112,7 @@ I used Scriptable Object [to handle tags](https://github.com/alsandbox/Tron-Endl
 
 #### Adaptive UI Design with Canvas Scaler.
 I made use of the Canvas Scaler component to make the game's UI responsive at various screen sizes and resolutions.
+By default, Unity doesn't fill the browser window completely when using WebGL, so I used the [Better2020](https://github.com/greggman/better-unity-webgl-template) template. It's indeed *better*.
 
 #### Resource Optimization Techniques.
 * **Procedural Dynamic Object Recycling**. I created a Procedural Dynamic Object Recycling system to optimize performance and memory efficiency. In the game, obstacles are continuously spawned until the first obstacle touches a specific object in the scene. At that point, the spamming stops, and the recycled object's rotation angle is dynamically altered while its position resets to a random distance within a predefined range. This approach introduces variability in obstacle positions relative to each other, reducing the likelihood of collisions between obstacles and gems. By reusing objects and maintaining relative uniqueness, this system significantly reduces the load on the garbage collector, resulting in a smoother gameplay experience and improved overall performance. The code for this idea is spread across several scripts in [this folder](https://github.com/alsandbox/Tron-Endless-Runner/tree/main/Assets/Scripts/GemsObstacles).
@@ -126,6 +127,7 @@ I made use of the Canvas Scaler component to make the game's UI responsive at va
 #### Graphics and Art
 * **Background Assets**: [Tron inspired VR playground model](https://skfb.ly/6xEqo). I took the floor texture from it, as well as the bike and obstacle models.
 * **Gems**: [Simple Gems Ultimate Animated Customizable Pack](https://assetstore.unity.com/packages/3d/props/simple-gems-ultimate-animated-customizable-pack-73764). I didn't use the author's animation but instead added a simple constant rotation around its axis.
+* [WebGl template Better2020](https://github.com/greggman/better-unity-webgl-template)
 * **Audio**
    - Main Background Sound: [8-Bit Arcade - Tron Legacy (End Titles) [8-Bit Computer Game Version]](https://open.spotify.com/track/2TidjDeKyGnj0va4xt42Vu?si=fb93294c463a4a4c)
    - All other sounds: [JDSherbert - Ultimate UI Sound Effect Pack [SFX] (Deprecated)](https://assetstore.unity.com/packages/audio/sound-fx/ultimate-ui-sound-effect-pack-sfx-228228)
