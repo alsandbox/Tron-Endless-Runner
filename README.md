@@ -1,5 +1,3 @@
-# Tron Endless Runner
-
 ## Table of Contents
 * [Builds](#builds)
 * [Project Overview](#project-overview)
